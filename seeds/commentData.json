@@ -1,0 +1,17 @@
+[
+    {
+      "text": "First!",
+      "user_id": 2,
+      "post_id": 1
+    },
+    {
+      "text": "How true.",
+      "user_id": 3,
+      "post_id": 2
+    },
+    {
+      "text": "So do I!",
+      "user_id": 1,
+      "post_id": 3
+    }
+  ]

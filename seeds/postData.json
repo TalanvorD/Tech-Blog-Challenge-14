@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Example Post 1",
+    "text": "Chocolate rain.",
+    "user_id": 1
+  },
+  {
+    "title": "Example Post 2",
+    "text": "Nyan",
+    "user_id": 2
+  },
+  {
+    "title": "Example Post 3",
+    "text": "I like turtles.",
+    "user_id": 3
+  }
+]

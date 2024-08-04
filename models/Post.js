@@ -1,10 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// Create Project model and datatypes, including the user_id foreign key.
-class Project extends Model {}
+// Create Post model and datatypes, including the user_id foreign key.
+class Post extends Model {}
 
-Project.init(
+Post.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,20 +12,12 @@ Project.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    text: {
       type: DataTypes.STRING,
-    },
-    date_created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    needed_funding: {
-      type: DataTypes.FLOAT,
       allowNull: false,
     },
     user_id: {
@@ -38,11 +30,11 @@ Project.init(
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'project',
+    modelName: 'post',
   }
 );
 
-module.exports = Project;
+module.exports = Post;
