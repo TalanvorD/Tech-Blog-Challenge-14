@@ -1,0 +1,10 @@
+<article class="post">
+    <div class="title">
+        <h2>{{title}}</h2> 
+        <p class="post-text">{{text}}</p>
+        <h4 class="userdata">Posted By: <span class="glyphicon glyphicon-user"></span> {{user.name}} on: <span>{{format_date createdAt}}</span></h4>
+    </div>
+    <div class="meta">
+        <a href="/post/{{id}}">{{comments.length}} {{format_comment "comment" comments.length}} {{comments.[0].text}}</a>
+    </div>
+</article>
