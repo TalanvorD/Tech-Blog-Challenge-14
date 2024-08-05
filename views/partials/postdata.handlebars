@@ -1,10 +1,14 @@
 <article class="post">
-    <div class="title">
+    <div>
         <h2>{{title}}</h2> 
-        <p class="post-text">{{text}}</p>
-        <h4 class="userdata">Posted By: <span class="glyphicon glyphicon-user"></span> {{user.name}} on: <span>{{format_date createdAt}}</span></h4>
+        <p>{{text}}</p>
+        <h3>Posted by {{user.name}} on {{format_date createdAt}}</h3>
     </div>
-    <div class="meta">
-        <a href="/post/{{id}}">{{comments.length}} {{format_comment "comment" comments.length}} {{comments.[0].text}}</a>
+    <div>
+        {{#if comments}}
+        <a href="/post/{{id}}">{{comments.length}} {{format_comment "comment" comments.length}}</a>
+        {{else}}
+        <a href="/post/{{id}}">No comments yet. Add one now!</a>
+        {{/if}}
     </div>
 </article>

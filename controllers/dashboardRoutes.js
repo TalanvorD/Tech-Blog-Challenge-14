@@ -35,11 +35,11 @@ router.get('/', withAuth, async (req, res) => {
 router.get('/edit/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
-            attributes: [ 'id', 'post_text', 'title', 'createdAt' ],
+            attributes: [ 'id', 'text', 'title', 'createdAt' ],
             include: [
               {
                 model: Comment,
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'createdAt'],
+                attributes: ['id', 'text', 'post_id', 'user_id', 'createdAt'],
                 include: { model: User, attributes: ['name'] }
               },
               {
@@ -49,7 +49,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
             ]
           });
           const post = postData.get({ plain: true });
-          res.render('edit-post', {
+          res.render('editpost', {
             post,
             logged_in: true,
             name: req.session.name

@@ -1,57 +1,97 @@
 const router = require('express').Router();
-// Import the User model from the models folder
-const { User } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 
-// If a POST request is made to /api/users, a new user is created. The user id and logged in state is saved to the session within the request object.
+// Get all users from the database
+router.get('/', async (req, res) => {
+  try {
+    const storedUserData = await User.findAll({
+      attributes: { exclude: ['password'] }
+    });
+    const userData = storedUserData.map((users) => users.get({ plain: true }));
+    res.status(200).json({ userData });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Get information for a single user from the database by id
+router.get('/:id', async (req, res) => {
+  try {
+    const storedUserData = await User.findOne({
+      attributes: { exclude: ['password'] },
+      where: { id: req.params.id },
+      include: [
+        { model: Post, attributes: ['id', 'title', 'text', 'createdAt']
+        },
+        {
+          model: Comment, attributes: ['id', 'text', 'createdAt'],
+          include: { model: Post, attributes: ['title', 'post_id'] }
+        }
+      ]
+    });
+    const userData = storedUserData({ plain: true });
+    res.status(200).json({ userData });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// Create a new user for the database
 router.post('/', async (req, res) => {
   try {
-    const userData = await User.create(req.body);
-
+    const newUserData = await User.create({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password
+    });
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.user_id = newUserData.id;
+      req.session.name = newUserData.name;
+      req.session.email = newUserData.email;
       req.session.logged_in = true;
-
-      res.status(200).json(userData);
+      res.status(200).json(newUserData);
     });
   } catch (err) {
-    res.status(400).json(err);
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
-// If a POST request is made to /api/users/login, the function checks to see if the user information matches the information in the database and logs the user in. If correct, the user ID and logged-in state are saved to the session within the request object.
+// Logs in the user
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
-
-    if (!userData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-
-    const validPassword = await userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
+    // Find the user who matches with the username in the database
+    const storedUserData = await User.findOne({
+      where: { email:  req.body.email }
     });
-
-  } catch (err) {
-    res.status(400).json(err);
+    // If there is no match with the username, response with an appropriate message
+    if (!storedUserData) {
+      res.status(400).json({ message: 'Incorrect e-mail, try again.' });
+      return;
+    }
+    // Checks the password in the database 
+    const checkPassword = await storedUserData.checkPassword(req.body.password);
+    // If there's a problem with the password, send an appropriate message
+    if (!checkPassword) {
+      res.status(401).json({ message: 'Incorrect password, try again' });
+      return;
+    }
+    // Saves the login state to for the session
+    req.session.save(() => {
+      req.session.user_id = storedUserData.id;
+      req.session.email = storedUserData.email;
+      req.session.name = storedUserData.name;
+      req.session.logged_in = true;
+      res.json({ user: storedUserData, message: 'You are now logged in!'});
+    });
+  } catch (error) {
+    res.status(500).json({error: error, message: 'Something went wrong.'});
+    console.log(error);
   }
 });
 
-// If a POST request is made to /api/users/logout, the function checks the logged_in state in the request.session object and destroys that session if logged_in is true.
+// Logs out the user by destroying the session
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

@@ -6,10 +6,10 @@ const logout = async () => {
   });
 
   if (response.ok) {
-    // If the fetch was successful and logout occured, redirects to the login page
-    document.location.replace('/login');
+    // If the fetch was successful and logout occured, redirects to the homepage
+    document.location.replace('/');
   } else {
-    alert('Failed to log out');
+    alert('Failed to log out.');
   }
 };
 
