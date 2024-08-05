@@ -11,6 +11,9 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Handlebar helpers
+const hbs = exphbs.create({ helpers });
+
 const sess = {
   secret: 'Super secret secret',
   cookie: { expires: 1800000 }, // Session expires in 30 minutes
@@ -21,13 +24,12 @@ const sess = {
   })
 };
 
-const hbs = exphbs.create({ helpers });
-
 app.use(session(sess));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 app.use(routes);
 

@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="./css/style.css" />  
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />  
 </head>
 
 <body>
@@ -19,8 +19,8 @@
     <h4><a href="/">Technocracy Blog</a></h4>
     <nav>
     {{#if logged_in}}
-        <a href="/dashboard">{{ name }}'s Dashboard</a>
-        <button id="logout" class="btn-no-style">Log Out</button>
+        <a href="/dashboard">Your Dashboard</a>
+        <a href="/logout" id="logout">Log Out</a>
         {{else}}
         <a href="/login">Log In</a>  or  <a href="/signup">Sign Up</a>
     {{/if}}

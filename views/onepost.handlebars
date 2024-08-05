@@ -1,4 +1,6 @@
 {{> postdata post}}
+{{> comments post.comments}}
+
 {{#if logged_in}}
 <form class="comment-form">
     <div>
@@ -6,12 +8,10 @@
     </div>
 
     <div>
-        <button type="submit">Add a Comment</button>
+        <button type="submit" class="btn btn-primary">Add a Comment</button>
     </div>
 </form>
 {{/if}}
-
-{{> comments post.comments}}
 
 {{#if logged_in}}
 <script src="/js/comment.js"></script>
