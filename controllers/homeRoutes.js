@@ -42,7 +42,7 @@ router.get('/post/:id', async (req, res) => {
       ]
     });
     const post = postData.get({ plain: true });
-    res.render('onePost', {
+    res.render('onepost', {
       post,
       logged_in: req.session.logged_in,
       email: req.session.email,

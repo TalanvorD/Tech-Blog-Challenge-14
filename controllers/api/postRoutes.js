@@ -43,8 +43,8 @@ router.get('/:id', withAuth, async (req, res) => {
         }
       ]
     });
-    const onePost = postData.get({ plain: true });
-    res.status(200).json({onePost});
+    const onepost = postData.get({ plain: true });
+    res.status(200).json({});
   } catch (err) {
     console.error(err);
     res.status(400).json(err);
