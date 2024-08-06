@@ -8,9 +8,9 @@
 
 * {
     box-sizing: border-box;
-  }
-  
-  body, html {
+}
+
+body, html {
     height: 100%;
     padding: 0;
     margin: 0;
@@ -18,19 +18,20 @@
     font-size: 16px;
     color: #131212;
     background: var(--ube);
-  }
-  
-  a {
-    text-decoration: none;
-    color: #0b2f5c;
-    font-weight: bold;
-  }
-  
-  a:hover {
-    color: #3486eb;
-  }
+}
 
-  nav a { /* Setting the decoration, spacing and alignment for the links in the nav blocks */
+a {
+    text-decoration: none;
+    color: var(--purple);
+    font-weight: bold;
+}
+
+a:hover {
+    color: #92cfc2;
+}
+
+nav a {
+    /* Setting the decoration, spacing and alignment for the links in the nav blocks */
     padding-left: 50px;
     background-color: white;
     color: black;
@@ -39,100 +40,108 @@
     text-align: center;
     display: inline-flex;
 }
-  
-  ul {
+
+ul {
     list-style: none
-  }
-  
-  textarea, input {
+}
+
+textarea, input {
     padding: .5%;
     border-radius: 5px;
     border: 2px solid #ccc;
-  }
-  
-  textarea:focus, input:focus {
+}
+
+textarea:focus, input:focus {
     outline: none;
-    border: 2px solid #3486eb;
-  }
-  
-  textarea {
+    border: 2px solid #000000;
+}
+
+textarea {
     min-width: 40%;
     min-height: 100px;
-  }
-  
-  form > div {
-    margin-bottom: 2%;
-  }
-  
-  form label {
+}
+
+form label {
     display: block;
-  }
-  
-  .topper {
+}
+
+header {
+    border-bottom: 1px solid #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1%;
+}
+
+header h1 {
+    font-size: 1em;
+}
+
+h4 {
+    font-size: 200%;
+    font-weight: bold;
+}
+
+main {
+    flex: 1;
+    padding: 2% 4%;
+}
+
+/* Class selectors */
+
+.blogbody {
     width: 100%;
     min-height: 100%;
     max-width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-  }
-  
-  header {
-    border-bottom: 1px solid #000000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1%;
-  }
-  
-  header h1 {
-    font-size: 1em;
-  }
+}
 
-  h4 {
-    font-size: 200%;
-    font-weight: bold;
-  }
-  
-  main {
-    flex: 1;
-    padding: 2% 4%;
-  }
-  
-  .post {
-    margin-bottom: 2%;
-    line-height: 150%;
-  }
-  
-  .edit-link {
-    display: block;
-    margin: -1.5% 0 2% 0;
-  }
-  
-  /*.comment-form {
-    margin-bottom: 5%;
-  }
-  
-  .comment {
-    padding: 1%;
+.post {
     margin-bottom: 1%;
-  }
-  
-  .comment .meta {
-    font-size: 90%;
-    margin-bottom: .5%;
-    opacity: .6;
-  } */
-  
-  .new-post-form input {
-    width: 300px;
-  }
-  
-  .edit-post-form {
+    line-height: 150%;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+}
+
+.post-title {
+    background-color: var(--orange);
+}
+
+.post-user-info {
+    background-color: #537fb4;
+}
+
+.edit-post-link {
+    /* display: block; */
+    margin: -1.5% 0 2% 0;
+}
+
+.comment {
+    margin-bottom: 1%;
+    padding: 1%;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+}
+
+.new-post-form input {
+    width: 100%;
+    margin-bottom: 1%;
+}
+
+.edit-post-form {
     margin-bottom: 5%;
-  }
-  
-  .contact-me { /* Styling the footer at the bottom of the page */
+}
+
+.your-posts {
+    margin-top: 2%;
+}
+
+.contact-me {
+    /* Styling the footer at the bottom of the page */
     display: flex;
     padding: 20px;
     justify-content: space-around;

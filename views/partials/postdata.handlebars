@@ -1,8 +1,8 @@
 <article class="post">
     <div>
-        <h2>{{title}}</h2> 
+        <h2 class="post-title">{{title}}</h2> 
         <p>{{text}}</p>
-        <h3>Posted by {{user.name}} on {{format_date createdAt}}</h3>
+        <h3 class="post-user-info">Posted by {{user.name}} on {{format_date createdAt}}</h3>
     </div>
     <div>
         {{#if comments}}
