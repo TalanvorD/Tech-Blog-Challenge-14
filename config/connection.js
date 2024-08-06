@@ -13,7 +13,7 @@ if (process.env.DB_URL) {
     process.env.DB_USER,
     process.env.DB_PASSWORD,
     {
-      host: 'DB_HOST', // localhost used for local testing before deploying to render
+      host: 'localhost', // localhost used for local testing before deploying to render
       dialect: 'postgres'
     }
   );
